@@ -5,20 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    
     <title>Drinks</title>
 </head>
 <body>
-    <header>
-        <a href="#">Drinks</a>
-        <a href="./ingredients.html">Ingredientes</a>
+    <header class="container">
+        <div>
         <a href="./suggestions.html">Sugestões</a>
+        <a href="./drinks.html">Drinks</a>
+        <a href="./ingredients.html">Ingredientes</a>
+    </div>
     </header>
-    <main>
+    <main class="container">
+        <div class="show-data">
         <section class="section-drinkSearch">
+            <label>Qual drink você quer aprender hoje?</label>
             <input type="text" id="drinkName" />
             <button id='drinkSearch' onclick="drinkSearch(document.getElementById('drinkName').value)">Procurar Bebidas</button>
         </section>
         
+        <section class="section-drinks">
+
+        </section>
+    </div>
     </main>
 </div>
 <script src="./script.js"></script>

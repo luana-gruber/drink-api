@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,400;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+
+html{
+    --backgroud: linear-gradient(to right, #2d1c36,#120d19);
+    --icons-details: #cecbdf;
+    --yellow: #ffdd68;
+    --grey: #f3f3f4;
+    --grey-dark:#2f3031;
+
+    /*1 rem = 16px (User Agent) = 100% (User Agent)*/
+    font-size: 62.5%; /* = 10px */
+}
+
+body{
+    display:flex;
+    height: 100vh;
+    background: var(--backgroud);
+    color: var(--grey);
+    font-family: 'Urbanist', sans-serif;
+}
+
+.container{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header{
+    width: 15%;
+    text-align: center;
+    display: none;
+}
+
+a{
+    font-size: 1.6rem;
+    display: inline-flex;
+    color: var(--grey);
+    padding: 5%;
+}
+
+
+h1{
+    font-family: 'Playfair Display', serif;
+    font-size: 4.4rem;
+    font-weight: 100;
+    animation: fadein 5s;
+    flex-wrap: wrap;
+}
+
+@keyframes fadein {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+    }
+
+h2{
+    font-weight: 400;
+}
+
+img{
+    width: 500px;
+}
+

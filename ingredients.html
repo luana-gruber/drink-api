@@ -8,16 +8,26 @@
     <title>Ingredientes</title>
 </head>
 <body>
-    <header>
-        <a href="./index.html">Drinks</a>
-        <a href="#">Ingredientes</a>
-        <a href="./suggestions.html">Sugestões</a>
+    <header class="container">
+        <div>
+            <a href="./suggestions.html">Sugestões</a>
+            <a href="./drinks.html">Drinks</a>
+            <a href="./ingredients.html">Ingredientes</a>
+        </div>
     </header>
-    <main>
+    <main class="container">
+        <div class="show-data">
         <section class="section-ingredientSearch">
+            <label>Qual é o ingrediente do drink?</label>
             <input type="text" id="ingredientName" />
-            <button id='ingredientSearch' onclick="showDataDrinks(this.id)">Procurar Ingredientes</button>
+            <button id='ingredientSearch' onclick="ingredientSearch(document.getElementById('ingredientName').value)">Procurar Ingredientes</button>
         </section>
+        
+        <section class="section-ingredients">
+
+        </section>
+    </div>
+       
     </main>
     <script src="./script.js"></script>
 </body>

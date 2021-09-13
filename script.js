@@ -1,123 +1,168 @@
 
 const drinkSearch = async(drinkName) =>{
-    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`).then(res => res.json());
+
+    document.querySelector('.section-drinks').innerHTML = '';
+    const inputDrink = document.querySelector('#drinkName').value;
+    document.querySelector('#drinkName').value = '';
+    
+    if (inputDrink != ''){
+        const drinkResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`).then(res => res.json());
+
+        for (let i = 0 ; i < drinkResponse.drinks.length; i++){
+                
+                const divDrink = document.createElement('div');
+                const imgDrink = document.createElement('img');
+                const idDrink = document.createElement('p') ;
+                const nameDrink = document.createElement('h2');
+                const alcoholicDrink = document.createElement('p');
+
+                divDrink.setAttribute('id', drinkResponse.drinks[i].idDrink);
+                divDrink.setAttribute('class', 'drinkPart');
+                divDrink.setAttribute('onclick', `showDataDrinks(${drinkResponse.drinks[i].idDrink})`);
+                imgDrink.setAttribute('src', drinkResponse.drinks[i].strDrinkThumb);
+                alcoholicDrink.innerHTML = `${drinkResponse.drinks[i].strAlcoholic}`;
+                idDrink.innerHTML = `${drinkResponse.drinks[i].idDrink}`;
+                nameDrink.innerHTML = `${drinkResponse.drinks[i].strDrink}`;
         
-        for (let i = 0 ; i < response.drinks.length; i++){
-            
-            const divDrink = document.createElement('div');
-            const imgDrink = document.createElement('img');
-            const idDrink = document.createElement('p') ;
-            const nameDrink = document.createElement('p');
-            const alcoholicDrink = document.createElement('p');
-
-            divDrink.setAttribute('id', response.drinks[i].idDrink);
-            divDrink.setAttribute('class', 'drinkPart');
-            divDrink.setAttribute('onclick', 'showDataDrinks(this.id)');
-            imgDrink.setAttribute('src', response.drinks[i].strDrinkThumb);
-            alcoholicDrink.innerHTML = `${response.drinks[i].strAlcoholic}`;
-            idDrink.innerHTML = `${response.drinks[i].idDrink}`;
-            nameDrink.innerHTML = `${response.drinks[i].strDrink}`;
-    
-
-            divDrink.appendChild(imgDrink);
-            divDrink.appendChild(idDrink);
-            divDrink.appendChild(nameDrink);
-            divDrink.appendChild(alcoholicDrink);
-    
-            document.querySelector('main').appendChild(divDrink);
-
-            }
+                divDrink.appendChild(imgDrink);
+                divDrink.appendChild(idDrink);
+                divDrink.appendChild(nameDrink);
+                divDrink.appendChild(alcoholicDrink);
+        
+                document.querySelector('.section-drinks').appendChild(divDrink);
+                
         }
             
-
-    const showDataDrinks = async(idDrink) =>{
-        await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`).then(res => res.json()).then(data =>{
-            const response = data.drinks[0];
-
-            document.querySelector('main').innerHTML = ''
-         
-            const ingredientsDrink = [];
-            const measuresDrink = [];
-
-            // 14 é o número de ingredientes
-            for (let i = 1 ; i < 15; i++){
-                var text = `strIngredient${i}`;
-                var responseIngredient = response[text];
-                if (responseIngredient != null){
-                    ingredientsDrink.push(responseIngredient);
-                }
-            }
-
-            for (let i = 1 ; i < 15; i++){
-                var text = `strMeasure${i}`;
-                var responseMeasure = response[text];
-                if (responseMeasure != null){
-                        measuresDrink.push(responseMeasure);
-                }
-            }
-
-            var nameDrinkText = document.createElement('p');
-            nameDrinkText.innerHTML = response.strDrink;;
-
-            var categoryDrinkText = document.createElement('p');
-            categoryDrinkText.innerHTML = response.strCategory;
-
-            var glassDrinkText = document.createElement('p');
-            glassDrinkText.innerHTML = response.strGlass;
-
-            var instructionsDrinkText = document.createElement('p');
-            instructionsDrinkText.innerHTML =  response.strInstructions;
-
-            var ingredientsDrinkText = document.createElement('p');
-            var measuresDrinkText = document.createElement('p');
-            
-            for (i=0; i < ingredientsDrink.length; i++){
-                ingredientsDrinkText.append(ingredientsDrink[i]);
-
-            }
-
-            for (i=0; i < measuresDrink.length; i++){
-                measuresDrinkText.append(measuresDrink[i]);
-
-            }
-            
-            var imgDrinkHtml = document.createElement('img');
-            imgDrinkHtml.setAttribute('src', response.strDrinkThumb);
-
-
-            document.querySelector('main').append(nameDrinkText,imgDrinkHtml, categoryDrinkText,glassDrinkText, instructionsDrinkText, ingredientsDrinkText, measuresDrinkText )
-
-    });
+    } else{
+        alert('Insira o nome do drink');
+    }
 }
-
+        
 
 const ingredientSearch = async(ingredientName) =>{
-    const answer = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`).then(response => response.json());
-        
-        for (let i = 0 ; i < answer.drinks.length; i++){
+
+    document.querySelector('.section-ingredients').innerHTML = '';
+    const inputIngredient = document.querySelector('#ingredientName').value;
+    document.querySelector('#ingredientName').value = '';
+    
+    if (inputIngredient != ''){
+        const ingredientResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`).then(res => res.json());
+                
+    
+        for (let i = 0 ; i < ingredientResponse.drinks.length; i++){
             
             const divIngredients = document.createElement('div');
             const imgDrinkIngredients = document.createElement('img');
             const idDrinkIngredients = document.createElement('p') ;
-            const nameDrinkIngredients = document.createElement('p');
+            const nameDrinkIngredients = document.createElement('h2');
 
-            divIngredients.setAttribute('id', answer.drinks[i].idDrink);
-            divIngredients.setAttribute('class', 'drinkPart');
-            divIngredients.setAttribute('onclick', `showDataDrinks(this.id)`);
-            imgDrinkIngredients.setAttribute('src', answer.drinks[i].strDrinkThumb);
-            idDrinkIngredients.innerHTML = `${answer.drinks[i].idDrink}`;
-            nameDrinkIngredients.innerHTML = `${answer.drinks[i].strDrink}`;
+            divIngredients.setAttribute('id', ingredientResponse.drinks[i].idDrink);
+            divIngredients.setAttribute('class', 'drinkIngredients');
+            divIngredients.setAttribute('onclick', `showDataDrinks(${ingredientResponse.drinks[i].idDrink})`);
+            imgDrinkIngredients.setAttribute('src', ingredientResponse.drinks[i].strDrinkThumb);
+            idDrinkIngredients.innerHTML = `${ingredientResponse.drinks[i].idDrink}`;
+            nameDrinkIngredients.innerHTML = `${ingredientResponse.drinks[i].strDrink}`;
     
 
             divIngredients.appendChild(imgDrinkIngredients);
             divIngredients.appendChild(idDrinkIngredients);
             divIngredients.appendChild(nameDrinkIngredients);
     
-            document.querySelector('main').appendChild(divIngredients);
+            document.querySelector('.section-ingredients').appendChild(divIngredients);
 
+        }      
+    } else{
+        alert('Insira o nome do ingrediente');
+    }
+}
+    
+
+    const drinkSuggestions = async() =>{
+
+    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()).then(data =>{
+        const suggestions = data.drinks[0];
+        const idSuggestions = suggestions.idDrink;
+        showDataDrinks(idSuggestions);
+
+    });  
+}
+
+const showDataDrinks = async(idDrink) =>{
+    
+    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`).then(res => res.json()).then(data =>{
+        const response = data.drinks[0];
+        document.querySelector('.show-data').innerHTML = '';
+        
+        const ingredientsDrink = [];
+        const measuresDrink = [];
+
+        // 14 é o número de ingredientes
+        for (let i = 1 ; i < 15; i++){
+            var textIngredient = `strIngredient${i}`;
+            var responseIngredient = response[textIngredient];
+            if (responseIngredient != null){
+                ingredientsDrink.push(responseIngredient);
+            }
+            
+            var textMeasure = `strMeasure${i}`;
+            var responseMeasure = response[textMeasure];
+            if (responseMeasure != null){
+                    measuresDrink.push(responseMeasure);
             }
         }
 
+        var nameDrinkText = document.createElement('h2');
+        nameDrinkText.innerHTML = response.strDrink;;
 
+        var categoryDrinkText = document.createElement('p');
+        categoryDrinkText.innerHTML = response.strCategory;
 
+        var titleCategory = document.createElement('h3');
+        titleCategory.innerText = 'Categoria';
+
+        var glassDrinkText = document.createElement('p');
+        glassDrinkText.innerHTML = response.strGlass;
+
+        var titleGlass= document.createElement('h3');
+        titleGlass.innerText = 'Copo ideal para ser servido';
+
+        var instructionsDrinkText = document.createElement('p');
+        instructionsDrinkText.innerHTML =  response.strInstructions;
+
+        var titleInstructions = document.createElement('h3');
+        titleInstructions.innerText = 'Como fazer';
+
+        var titleIngredients = document.createElement('h3');
+        titleIngredients.innerText = 'Lista de Ingredientes';
+
+        var titleMeasures = document.createElement('h3');
+        titleMeasures.innerText = 'Medidas';
+        
+        var listIngredients = document.createElement('ul')
+        listIngredients.setAttribute('class', 'list-ingredients');
+
+        var listMeasures = document.createElement('ul')
+        listMeasures.setAttribute('class', 'list-measures');
+        
+        for (i=0; i < ingredientsDrink.length; i++){
+            var ingredientsDrinkText = document.createElement('li');
+            ingredientsDrinkText.append(ingredientsDrink[i]);
+            listIngredients.appendChild(ingredientsDrinkText);
+        }
+
+        for (i=0; i < measuresDrink.length; i++){
+            var measuresDrinkText = document.createElement('li');
+            measuresDrinkText.append(measuresDrink[i]);
+            listMeasures.appendChild(measuresDrinkText);
+
+        }
+        
+        var imgDrinkHtml = document.createElement('img');
+        imgDrinkHtml.setAttribute('src', response.strDrinkThumb);
+        
+        document.querySelector('.show-data').append(nameDrinkText,imgDrinkHtml,titleCategory,categoryDrinkText,titleGlass,glassDrinkText, titleInstructions, instructionsDrinkText,titleIngredients, listIngredients,titleMeasures, listMeasures);
+        
+    });
     
+}
+
