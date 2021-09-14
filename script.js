@@ -75,18 +75,6 @@ const ingredientSearch = async(ingredientName) =>{
         alert('Insira o nome do ingrediente');
     }
 }
-    
-
-    const drinkSuggestions = async() =>{
-
-    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()).then(data =>{
-        const suggestions = data.drinks[0];
-        const idSuggestions = suggestions.idDrink;
-        showDataDrinks(idSuggestions);
-
-    });  
-}
-
 const showDataDrinks = async(idDrink) =>{
     
     await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`).then(res => res.json()).then(data =>{
@@ -124,7 +112,7 @@ const showDataDrinks = async(idDrink) =>{
         glassDrinkText.innerHTML = response.strGlass;
 
         var titleGlass= document.createElement('h3');
-        titleGlass.innerText = 'Copo ideal para ser servido';
+        titleGlass.innerText = 'Copo ideal';
 
         var instructionsDrinkText = document.createElement('p');
         instructionsDrinkText.innerHTML =  response.strInstructions;
@@ -165,4 +153,17 @@ const showDataDrinks = async(idDrink) =>{
     });
     
 }
+    
+
+    const drinkSuggestions = async() =>{
+
+    await fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`).then(res => res.json()).then(data =>{
+        const suggestions = data.drinks[0];
+        const idSuggestions = suggestions.idDrink;
+        showDataDrinks(idSuggestions);
+
+    });  
+}
+
+
 
