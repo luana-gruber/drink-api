@@ -11,11 +11,11 @@
 
 
 html{
-    --backgroud: linear-gradient(to right, #2d1c36,#120d19);
+    --background: linear-gradient(135deg, #2d1c36,#120d19);
     --icons-details: #cecbdf;
     --yellow: #ffe693;
     --grey: #f3f3f4;
-    --grey-dark:#2f3031;
+    --grey-dark: #332c35;
 
     /*1 rem = 16px (User Agent) = 100% (User Agent)*/
     font-size: 62.5%; /* = 10px */
@@ -23,10 +23,10 @@ html{
 
 body{
     display:flex;
-    background: var(--backgroud);
     color: var(--grey);
     font-family: 'Urbanist', sans-serif;
 }
+
 
 .container{
     width: 100%;
@@ -41,9 +41,9 @@ body{
     width: 20rem;
     height: 100vh;
     position: fixed;
+    background-color: var(--grey-dark);
     transition: all .2 linear;
     left: -28rem;
-    background: var(--backgroud);
 }
 
 #check{
@@ -93,20 +93,21 @@ h2{
     font-weight: 400;
     font-size: 2rem;
     margin-top:3rem;
+    margin-bottom: 2rem;
     color: var(--yellow);
     animation: fadein 6s;
-    z-index: 2;
 }
 
-img{
-    width: 30rem;
+.show-data img{
+    width: 60rem;
+    height: 50rem;
     border-radius: 2rem;
-    display: flex;
     animation: fadein 8s;
 }
 
 h3{
     font-weight: 400;
+    margin-top:2rem;
     color: var(--yellow);
     font-size: 1.8rem;
     animation: fadein 8s;
@@ -121,6 +122,7 @@ p{
 li{
     color: var(--grey);
     font-size: 1.5rem;
+    margin-left: 2rem;
     animation: fadein 8s;
 }
 #icon img{
@@ -132,6 +134,17 @@ li{
 }
 
 .show-data{
-    width: 50%;
+    width: 60rem;
+    padding-bottom: 2rem;
     margin: 0 auto;
+}
+
+.background-image{
+    background-image: url("./images/drink1.jpg");
+    background-color: var(--grey-dark);
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-position-x: -15rem;
+    position: relative;
+    width: 100%;
 }
