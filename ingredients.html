@@ -8,8 +8,8 @@
     <title>Ingredientes</title>
 </head>
 <body>
+    <div class="background-image">
     <header>
-        <div class= "container>">
             <input type="checkbox" id="check"/>
             <label id="icon" for="check"><img src="./images/icon.svg"></label>
             <div class="menu">
@@ -19,22 +19,20 @@
                 <a href="./ingredients.html">Ingredientes</a>
             </nav>  
         </div>
-        </div>
     </header>
-    <main class="container">
-        <div class="show-data">
-        <section class="section-ingredientSearch">
-            <label>Qual é o ingrediente do drink?</label>
-            <input type="text" id="ingredientName" />
-            <button id='ingredientSearch' onclick="ingredientSearch(document.getElementById('ingredientName').value)">Procurar Ingredientes</button>
-        </section>
+    <main>
         
-        <section class="section-ingredients">
-
+        <section class="section-ingredientSearch container">
+            <label>Qual é o ingrediente do drink?</label>
+            <div class="search">
+            <input type="text" id="ingredientName" />
+            <button id='ingredientSearch' onclick="ingredientSearch(document.getElementById('ingredientName').value)"><img class="icon-search" src="./images/icon-search.svg" alt="Ícone de busca"></button>
+        </div>
         </section>
-    </div>
-       
+        <div class="show-data"></div>
+        <section class="section-list"></section>
     </main>
+</div>
 </div>
     <script src="./script.js"></script>
 </body>

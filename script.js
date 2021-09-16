@@ -1,15 +1,15 @@
 
 const drinkSearch = async(drinkName) =>{
-
-    document.querySelector('.section-drinks').innerHTML = '';
     const inputDrink = document.querySelector('#drinkName').value;
-    document.querySelector('#drinkName').value = '';
-    
-    if (inputDrink != ''){
-        const drinkResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`).then(res => res.json());
+    const drinkResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drinkName}`).then(res => res.json());
+       
+        document.querySelector('.show-data').innerHTML = '';
+        document.querySelector('.section-list').innerHTML = '';
+        document.querySelector('#drinkName').value = '';
 
+    if (inputDrink != ''){
         for (let i = 0 ; i < drinkResponse.drinks.length; i++){
-                
+            
                 const divDrink = document.createElement('div');
                 const imgDrink = document.createElement('img');
                 const idDrink = document.createElement('p') ;
@@ -29,8 +29,7 @@ const drinkSearch = async(drinkName) =>{
                 divDrink.appendChild(nameDrink);
                 divDrink.appendChild(alcoholicDrink);
         
-                document.querySelector('.section-drinks').appendChild(divDrink);
-                
+                document.querySelector('.section-list').appendChild(divDrink);
         }
             
     } else{
@@ -38,17 +37,15 @@ const drinkSearch = async(drinkName) =>{
     }
 }
         
-
 const ingredientSearch = async(ingredientName) =>{
-
-    document.querySelector('.section-ingredients').innerHTML = '';
     const inputIngredient = document.querySelector('#ingredientName').value;
-    document.querySelector('#ingredientName').value = '';
-    
     if (inputIngredient != ''){
-        const ingredientResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`).then(res => res.json());
-                
-    
+    const ingredientResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`).then(res => res.json());
+              
+        document.querySelector('.show-data').innerHTML = '';
+        document.querySelector('.section-list').innerHTML = '';
+        document.querySelector('#ingredientName').value = '';
+
         for (let i = 0 ; i < ingredientResponse.drinks.length; i++){
             
             const divIngredients = document.createElement('div');
@@ -68,18 +65,21 @@ const ingredientSearch = async(ingredientName) =>{
             divIngredients.appendChild(idDrinkIngredients);
             divIngredients.appendChild(nameDrinkIngredients);
     
-            document.querySelector('.section-ingredients').appendChild(divIngredients);
+            document.querySelector('.section-list').appendChild(divIngredients);
 
-        }      
+        }  
+
     } else{
         alert('Insira o nome do ingrediente');
     }
 }
+
 const showDataDrinks = async(idDrink) =>{
     
     await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`).then(res => res.json()).then(data =>{
         const response = data.drinks[0];
         document.querySelector('.show-data').innerHTML = '';
+
         
         const ingredientsDrink = [];
         const measuresDrink = [];
@@ -149,7 +149,7 @@ const showDataDrinks = async(idDrink) =>{
         imgDrinkHtml.setAttribute('src', response.strDrinkThumb);
         
         document.querySelector('.show-data').append(nameDrinkText,imgDrinkHtml,titleCategory,categoryDrinkText,titleGlass,glassDrinkText, titleInstructions, instructionsDrinkText,titleIngredients, listIngredients,titleMeasures, listMeasures);
-        
+        document.querySelector('.section-list').innerHTML = '';
     });
     
 }
@@ -161,7 +161,6 @@ const showDataDrinks = async(idDrink) =>{
         const suggestions = data.drinks[0];
         const idSuggestions = suggestions.idDrink;
         showDataDrinks(idSuggestions);
-
     });  
 }
 

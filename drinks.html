@@ -9,8 +9,9 @@
     <title>Drinks</title>
 </head>
 <body>
+    <div class="background-image">
     <header>
-        <div class= "container>">
+    
             <input type="checkbox" id="check"/>
             <label id="icon" for="check"><img src="./images/icon.svg"></label>
             <div class="menu">
@@ -20,24 +21,24 @@
                 <a href="./ingredients.html">Ingredientes</a>
             </nav>  
         </div>
-        </div>
+    
     </header>
     <main>
-        <div class="show-data">
-        <section class="section-drinkSearch">
-            <label>Qual drink você quer aprender hoje?</label>
-            <input type="text" id="drinkName" />
-            <button id='drinkSearch' onclick="drinkSearch(document.getElementById('drinkName').value)">Procurar Bebidas</button>
-        </section>
         
-        <section class="section-drinks">
-
+        <section class="section-drinkSearch container">
+            <label>Qual drink você quer aprender hoje?</label>
+            <div class="search">
+            <input type="text" id="drinkName" />
+            <button id='drinkSearch' onclick="drinkSearch(document.getElementById('drinkName').value)"><img class="icon-search" src="./images/icon-search.svg" alt="Ícone de busca"></button>
+        </div>
         </section>
-    </div>
+        <div class="show-data"></div>
+        <section class="section-list"></section>
+    
     </main>
 </div>
-</body>
-<script src="./script.js"></script>
+</div>
+    <script src="./script.js"></script>
 </body>
 </html>
 
