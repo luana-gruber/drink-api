@@ -8,6 +8,9 @@ const drinkSearch = async(drinkName) =>{
         document.querySelector('#drinkName').value = '';
 
     if (inputDrink != ''){
+        if(drinkResponse.drinks === null){
+            alert('Drink não localizado, informe o nome em inglês')
+        }
         for (let i = 0 ; i < drinkResponse.drinks.length; i++){
             
                 const divDrink = document.createElement('div');
@@ -28,10 +31,11 @@ const drinkSearch = async(drinkName) =>{
                 divDrink.appendChild(idDrink);
                 divDrink.appendChild(nameDrink);
                 divDrink.appendChild(alcoholicDrink);
-        
+                console.log(drinkResponse.drinks)
                 document.querySelector('.section-list').appendChild(divDrink);
+               
         }
-            
+     
     } else{
         alert('Insira o nome do drink');
     }
@@ -39,14 +43,16 @@ const drinkSearch = async(drinkName) =>{
         
 const ingredientSearch = async(ingredientName) =>{
     const inputIngredient = document.querySelector('#ingredientName').value;
+
     if (inputIngredient != ''){
+      
     const ingredientResponse = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`).then(res => res.json());
-              
+
         document.querySelector('.show-data').innerHTML = '';
         document.querySelector('.section-list').innerHTML = '';
         document.querySelector('#ingredientName').value = '';
 
-        for (let i = 0 ; i < ingredientResponse.drinks.length; i++){
+            for (let i = 0 ; i < ingredientResponse.drinks.length; i++){
             
             const divIngredients = document.createElement('div');
             const imgDrinkIngredients = document.createElement('img');
@@ -66,12 +72,14 @@ const ingredientSearch = async(ingredientName) =>{
             divIngredients.appendChild(nameDrinkIngredients);
     
             document.querySelector('.section-list').appendChild(divIngredients);
-
+            
         }  
-
-    } else{
+        
+    }
+    else{
         alert('Insira o nome do ingrediente');
     }
+    
 }
 
 const showDataDrinks = async(idDrink) =>{
@@ -88,13 +96,13 @@ const showDataDrinks = async(idDrink) =>{
         for (let i = 1 ; i < 15; i++){
             var textIngredient = `strIngredient${i}`;
             var responseIngredient = response[textIngredient];
-            if (responseIngredient != null){
+            if ((responseIngredient != null) && (responseIngredient !== "")){
                 ingredientsDrink.push(responseIngredient);
             }
             
             var textMeasure = `strMeasure${i}`;
             var responseMeasure = response[textMeasure];
-            if (responseMeasure != null){
+            if ((responseMeasure != null) && (responseMeasure !== "")){
                     measuresDrink.push(responseMeasure);
             }
         }
