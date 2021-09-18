@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,400;1,100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
 
@@ -41,6 +42,7 @@ body{
     background-color: var(--grey-dark);
     transition: all .2 linear;
     left: -28rem;
+    z-index: 8;
 }
 
 #check{
@@ -49,7 +51,7 @@ body{
 
 #check:checked ~ .menu{
     transform: translateX(28rem);
-    animation: fadein 2s;
+    animation: fadein 1s;
  
 }
 
@@ -126,6 +128,7 @@ li{
     width: 3rem;
     cursor: pointer;
     position: fixed;
+    z-index: 15;
 }
 
 header :nth-child(2){
@@ -230,26 +233,32 @@ button{
         height: 15rem;  
     }
 
+    #icon img{
+        margin-top: 1.8rem;
+    }
+
     .section-list p{
         text-align: center; 
     }
-    h1{
-        font-size: 3rem;
+    h1, label{
+        font-size: 2rem;
+    }
+
+    a, h2, h3, p{
+        font-size: 1.5rem;
     }
     p{
         width: 20rem;
     }
-    label{
-        font-size: 3rem;
-    }
 
-    .section-drinkSearch label{
-        width: 25rem;
-        margin-left: 2rem;
+    .section-drinkSearch label, .section-ingredientSearch label{
+        margin-top:1.5rem;
+        margin-left: 1rem;
     }
 
     input{
-        width: 20rem;
+        width: 18rem;
+        font-size: 1.5rem;
     }
 
     .section-list{
@@ -263,7 +272,7 @@ button{
 
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (min-width: 601px) and (max-width: 1000px) {
     .container{
         width: 70%;
         margin: 0 auto;
@@ -277,26 +286,33 @@ button{
         height: 15rem;  
     }
 
+    a, h2, h3, p{
+        font-size: 1.6rem;
+    }
     .section-list p{
         text-align: center; 
     }
     h1{
-        font-size: 3rem;
+        font-size: 2.5rem;
+        margin-top:2rem;
     }
     p{
-        width: 30rem;
+        width: 40rem;
     }
     label{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
-    .section-drinkSearch label{
-        width: 35rem;
-        margin-left: 2rem;
+    .section-drinkSearch label, .section-ingredientSearch label{
+        width: 40rem;
+        text-align: center;
+        margin-top:2.5rem;
+
     }
 
     input{
-        width: 30rem;
+        width: 35rem;
+        font-size: 1.6rem;
     }
 
     .section-list{
@@ -307,4 +323,4 @@ button{
         background-position: -75rem;
     }
 
-}
+} 
