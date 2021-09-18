@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
     
-    <title>Drinks</title>
-</head>
-<body>
-    <div class="background-image">
-    <header>
-    
+        <title>Drinks</title>
+    </head>
+    <body>
+        <div class="background-image">
+        <header>
             <input type="checkbox" id="check"/>
             <label id="icon" for="check"><img src="./images/icon.svg"></label>
             <div class="menu">
             <nav>
-                <a href="./suggestions.html">Sugestões</a>
+                <a href="./index.html">Início</a>
                 <a href="./drinks.html">Drinks</a>
                 <a href="./ingredients.html">Ingredientes</a>
             </nav>  
         </div>
-    
     </header>
     <main>
-        
         <section class="section-drinkSearch container">
             <label>Qual drink você quer aprender hoje?</label>
             <div class="search">
-            <input type="text" id="drinkName" />
+            <input type="text" id="drinkName" placeholder="Magarita, Blody, Blue..." />
             <button id='drinkSearch' onclick="drinkSearch(document.getElementById('drinkName').value)"><img class="icon-search" src="./images/icon-search.svg" alt="Ícone de busca"></button>
         </div>
         </section>
